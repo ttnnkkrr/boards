@@ -1,0 +1,12 @@
+cache/
+images/avatars/upload/
+store/*.*
+files/*
+tml/*
+spamFilter.php
+config.php
+composer.*
+rebootNotification.php
+adminNotification.php
+isTor.php
+torlist

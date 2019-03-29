@@ -1,0 +1,50 @@
+<!-- INCLUDE ucp_header.html -->
+
+<table class="tablebg" width="100%" cellspacing="1">
+<tr>
+	<th colspan="2" valign="middle">{L_TITLE}</th>
+</tr>
+<!-- IF ERROR -->
+	<tr>
+		<td class="row2" colspan="2" align="center"><span class="genmed" style="color: #FF0000">{ERROR}</span></td>
+	</tr>
+<!-- ENDIF -->
+<tr style="_height:200px">
+	<td class="row1" width="35%"><b class="genmed">{L_CURRENT_IMAGE}{L_COLON} </b><br /><span class="genmed">{L_AVATAR_EXPLAIN}</span></td>
+	<td class="row2" align="center"><br />
+	<!-- IF AVATAR --><span class="genmed">{AVATAR}</span><br /><br /><input type="checkbox" class="radio" name="avatar_delete" />&nbsp;<span class="genmed">{L_DELETE_AVATAR}</span>
+		<!-- ELSE --><img src="{T_THEME_PATH}/images/no_avatar.gif" width="100" height="100" alt="" />
+		<!-- ENDIF --></td>
+</tr>
+<!-- IF not S_AVATARS_ENABLED -->
+	<tr>
+		<td class="row3" colspan="2" align="center"><span class="genmed">{L_AVATAR_FEATURES_DISABLED}</span></td>
+	</tr>
+<!-- ENDIF -->
+	<tr>
+		<th colspan="2">{L_AVATAR_SELECT}</th>
+	</tr>
+	<tr>
+		<td class="row1" width="35%"><b class="genmed">{L_AVATAR_TYPE}{L_COLON}</b></td>
+		<td class="row2">
+			<select name="avatar_driver" id="avatar_driver" onchange="avatarfunction()">
+				<!-- BEGIN avatar_drivers -->
+				<option value="{avatar_drivers.DRIVER}"<!-- IF avatar_drivers.SELECTED --> selected="selected"<!-- ENDIF -->>{avatar_drivers.L_TITLE}</option>
+				<!-- END avatar_drivers -->
+			</select></td>
+	</tr>
+<!-- BEGIN avatar_drivers -->
+	<tr class="avatar_option_{avatar_drivers.DRIVER}" id="{avatar_drivers.DRIVER}_1">
+		<td class="row1" width="35%" colspan="2"><noscript><b class="genmed">{avatar_drivers.L_TITLE} </b><br /></noscript><span class="genmed">{avatar_drivers.L_EXPLAIN}</span></td>
+	</tr>
+	<tr class="avatar_option_{avatar_drivers.DRIVER}" id="{avatar_drivers.DRIVER}_2">
+		<td colspan="2" style="padding: 0">{avatar_drivers.OUTPUT}</td>
+	</tr>
+<!-- END avatar_drivers -->
+
+	<tr>
+		<td class="cat" colspan="2" align="center">{S_HIDDEN_FIELDS}<input class="btnlite" type="reset" value="{L_RESET}" name="reset" onclick="window.location.reload();" />&nbsp; <input class="btnmain" type="submit" name="submit" value="{L_SUBMIT}" /></td>
+	</tr>
+</table><script>function avatarfunction() {if (document.getElementById)	{ <!-- BEGIN avatar_drivers -->document.getElementById("{avatar_drivers.DRIVER}_1").style.display="none";document.getElementById("{avatar_drivers.DRIVER}_2").style.display="none";<!-- END avatar_drivers --> var typeselected = document.getElementById("avatar_driver").value;	document.getElementById(typeselected+"_1").style.display = "";	document.getElementById(typeselected+"_2").style.display = "";}	else if (document.all)	{ <!-- BEGIN avatar_drivers -->document.all("{avatar_drivers.DRIVER}_1").style.display="none";document.all("{avatar_drivers.DRIVER}_2").style.display="none";<!-- END avatar_drivers --> var typeselected = document.all("avatar_driver").value;	document.all(typeselected+"_1").style.display = "";	document.all(typeselected+"_2").style.display = "";}}	if (document.all && !document.getElementById) {document.all("avatar_driver").selectedIndex = "0";}	avatarfunction();</script>
+
+<!-- INCLUDE ucp_footer.html -->

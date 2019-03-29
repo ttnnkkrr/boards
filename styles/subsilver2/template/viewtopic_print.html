@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html dir="{S_CONTENT_DIRECTION}" lang="{S_USER_LANG}">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="robots" content="noindex" />
+<title>{SITENAME} :: {PAGE_TITLE}</title>
+
+<style type="text/css">
+<!--
+
+body {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+}
+
+img {
+	border: 0;
+}
+
+td {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+	line-height: 150%;
+}
+
+.code, .codecontent,
+.quote, .quotecontent {
+	margin: 0 5px 0 5px;
+	padding: 5px;
+	font-size: smaller;
+	border: 1px solid #000000;
+}
+
+.quotetitle {
+	color: #000000;
+	display : block;
+	font-weight: bold;
+}
+
+.forum {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+.topic {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.genmed {
+	font-size: 8pt;
+}
+
+hr {
+	color: #808080;
+	height: 3px;
+	border-style: solid;
+}
+
+hr.sep {
+	color: #C0C0C0;
+	height: 1px;
+	border-style: dashed;
+}
+//-->
+</style>
+<!-- EVENT viewtopic_print_head_append -->
+</head>
+<body>
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td colspan="2" align="center"><span class="forum">{SITENAME}</span><br /><span class="genmed"><a href="{U_FORUM}">{U_FORUM}</a></span></td>
+</tr>
+<tr>
+	<td colspan="2"><br /></td>
+</tr>
+<tr>
+	<td><span class="topic">{TOPIC_TITLE}</span><br /><span class="genmed"><a href="{U_TOPIC}">{U_TOPIC}</a></span></td>
+	<td align="{S_CONTENT_FLOW_END}" valign="bottom" class="genmed">{PAGE_NUMBER}</td>
+</tr>
+</table>
+
+<!-- BEGIN postrow -->
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">{L_AUTHOR}{L_COLON}&nbsp;</td>
+		<td><b>{postrow.POST_AUTHOR}</b> [ {postrow.POST_DATE} ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">{L_POST_SUBJECT}{L_COLON}&nbsp;</td>
+		<td><b>{postrow.POST_SUBJECT}</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />{postrow.MESSAGE}
+
+		<!-- IF postrow.S_HAS_ATTACHMENTS -->
+			<br clear="all" /><br />
+
+			<table class="tablebg" width="100%" cellspacing="1">
+			<tr>
+				<td><b class="genmed">{L_ATTACHMENTS}{L_COLON} </b></td>
+			</tr>
+			<!-- BEGIN attachment -->
+				<tr>
+					<td>{postrow.attachment.DISPLAY_ATTACHMENT}</td>
+				</tr>
+			<!-- END attachment -->
+			</table>
+		<!-- ENDIF -->
+
+		</td>
+	</tr>
+	</table>
+<!-- END postrow -->
+
+<hr width="85%" />
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td class="genmed">{PAGE_NUMBER}</td>
+	<td align="{S_CONTENT_FLOW_END}" class="genmed">{S_TIMEZONE}</td>
+</tr>
+<tr>
+	<td colspan="2" align="center" class="genmed">Powered by phpBB&reg; Forum Software &copy; phpBB Limited<br />https://www.phpbb.com/</td>
+</tr>
+</table>
+
+</body>
+</html>

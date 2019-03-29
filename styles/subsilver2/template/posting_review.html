@@ -1,0 +1,92 @@
+
+<table class="tablebg" width="100%" cellspacing="1">
+<tr>
+	<th style="padding: 7px 14px; text-align: {S_CONTENT_FLOW_BEGIN}">{L_POST_REVIEW}</th>
+</tr>
+<tr>
+	<td class="row1" style="padding: 4px 10px; text-align: {S_CONTENT_FLOW_BEGIN}"><span class="gen">{L_POST_REVIEW_EXPLAIN}</span></td>
+</tr>
+<tr>
+	<td class="row1">
+		<table class="tablebg" width="100%" cellspacing="1">
+		<tr>
+			<th width="22%">{L_AUTHOR}</th>
+			<th>{L_MESSAGE}</th>
+		</tr>
+		<!-- BEGIN post_review_row -->
+
+			<!-- IF post_review_row.S_ROW_COUNT is even -->	<tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+				<!-- IF post_review_row.S_IGNORE_POST -->
+				<td colspan="2" class="normal">{post_review_row.L_IGNORE_POST}</td>
+				<!-- ELSE -->
+
+				<td rowspan="2" align="{S_CONTENT_FLOW_BEGIN}" valign="top"><a name="pr{post_review_row.POST_ID}" class="anchor"></a>
+					<table width="150" cellspacing="0" cellpadding="4" border="0">
+					<tr>
+						<td align="center"><b class="postauthor">{post_review_row.POST_AUTHOR_FULL}</b></td>
+					</tr>
+					</table>
+				</td>
+				<td width="100%">
+					<table width="100%" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td>&nbsp;</td>
+						<td class="genmed" valign="middle" nowrap="nowrap"><b>{L_POST_SUBJECT}{L_COLON}</b>&nbsp;</td>
+						<td class="genmed" width="100%" valign="middle">{post_review_row.POST_SUBJECT}</td>
+						<td>&nbsp;</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+
+			<!-- IF post_review_row.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+
+				<td valign="top">
+					<table width="100%" cellspacing="0">
+					<tr>
+						<td valign="top">
+							<table width="100%" cellspacing="0" cellpadding="2">
+							<tr>
+								<td><div class="postbody">{post_review_row.MESSAGE}</div>
+
+								<!-- IF post_review_row.S_HAS_ATTACHMENTS -->
+									<br clear="all" /><br />
+
+									<table class="tablebg" width="100%" cellspacing="1">
+									<tr>
+										<td class="row3"><b class="genmed">{L_ATTACHMENTS}{L_COLON} </b></td>
+									</tr>
+									<!-- BEGIN attachment -->
+										<tr class="postbody">
+											<!-- IF post_review_row.attachment.S_ROW_COUNT is even --><td class="row2"><!-- ELSE --><td class="row1"><!-- ENDIF -->{post_review_row.attachment.DISPLAY_ATTACHMENT}</td>
+										</tr>
+									<!-- END attachment -->
+									</table>
+								<!-- ENDIF -->
+								
+								</td>
+							</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<table width="100%" cellspacing="0" cellpadding="0" border="0">
+							<tr valign="middle">
+								<td width="100%">&nbsp;</td>
+								<td class="genmed" nowrap="nowrap"><b>{L_POSTED}{L_COLON}</b> {post_review_row.POST_DATE}</td>
+							</tr>
+							</table>
+						</td>
+					</tr>
+					</table>
+				</td>
+			<!-- ENDIF -->
+			</tr>
+		<!-- END post_review_row -->
+		</table>
+	</td>
+</tr>
+</table>
+
+<br clear="all" />

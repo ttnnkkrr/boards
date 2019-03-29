@@ -1,0 +1,10 @@
+o0johntam0o_codeboxplus_base_controller:
+    path: '/codeboxplus'
+    defaults: { _controller: 'o0johntam0o.codeboxplus.controller:base' }
+
+o0johntam0o_codeboxplus_download_controller:
+    path: '/codeboxplus/download/{id}-{part}'
+    defaults: { _controller: 'o0johntam0o.codeboxplus.controller:downloader', id:0, part:0 }
+    requirements:
+        id: \d+
+        part: \d+

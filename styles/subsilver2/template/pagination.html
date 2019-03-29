@@ -1,0 +1,14 @@
+<!-- IF .pagination -->
+	<span class="nowrap">
+	<!-- IF BASE_URL --><a href="#" class="bold" onclick="if (document.getElementsByTagName) { if (typeof this.flag == 'undefined') {this.flag = true; this.parentNode.getElementsByTagName('span')[0].innerHTML=''; this.parentNode.getElementsByTagName('span')[1].style.display=''; this.parentNode.getElementsByTagName('input')[0].focus(); this.parentNode.getElementsByTagName('input')[0].value='{CURRENT_PAGE}'; } else { this.parentNode.getElementsByTagName('input')[0].focus();}} else { jumpto(prompt('{LA_JUMP_PAGE}{L_COLON}', '{CURRENT_PAGE}'), '{PER_PAGE}', '{BASE_URL|e('js')}')}; return false;">{L_GOTO_PAGE}</a>	<span><!-- ENDIF -->
+	<!-- BEGIN pagination -->
+		<!-- IF pagination.S_IS_PREV --><a href="{pagination.PAGE_URL}" title="{L_PREVIOUS}">&laquo;</a>
+		<!-- ELSEIF pagination.S_IS_CURRENT --><strong>{pagination.PAGE_NUMBER}</strong>
+		<!-- ELSEIF pagination.S_IS_ELLIPSIS --> {L_ELLIPSIS} 
+		<!-- ELSEIF pagination.S_IS_NEXT --><a href="{pagination.PAGE_URL}" title="{L_NEXT}">&raquo;</a>
+		<!-- ELSE --><a href="{pagination.PAGE_URL}" title="{L_GOTO_PAGE} {pagination.PAGE_NUMBER}">{pagination.PAGE_NUMBER}</a>
+		<!-- ENDIF -->
+	<!-- END pagination -->
+	<!-- IF BASE_URL --></span><span style="display:none"><input type="number" min="1" max="{TOTAL_PAGES}" title="{L_JUMP_PAGE}" style="font-size: 115%; width:60px" onkeydown="if (event.keyCode==13 || event.which==13) {	jumpto(this.value, '{PER_PAGE}', '{BASE_URL|e('js')}'); return false;}"> <input type="button" class="btnlite" style="font-size: 115%" value="{L_GO}" title="{L_JUMP_TO_PAGE_CLICK}" onclick="jumpto(this.parentNode.getElementsByTagName('input')[0].value, '{PER_PAGE}', '{BASE_URL|e('js')}');"></span><!-- ENDIF -->
+	</span>
+<!-- ENDIF -->
