@@ -1684,7 +1684,7 @@ $(function() {
 // modified by joedf from  https://greasyfork.org/en/scripts/374036-ahk-forum-fix/code
 
 window.expandCode = function (e) {
-    var c = e.parentNode.parentNode.getElementsByTagName('code')[0];
+	var c = e.parentNode.parentNode.getElementsByTagName('code')[0];
 	if (c.getAttribute('expanded') == 'true') {
 		c.style.height = '200px';
 		e.innerHTML = 'Expand View';
@@ -1703,7 +1703,7 @@ function expand_code_init() {
 	for (var i = 0; i < boxes.length; i++) {
 		if (boxes[i].scrollHeight > boxes[i].offsetHeight + 1) {
 			add_expand = true;
-        	} else if (boxes[i].scrollHeight == 0) { /* possibly inside a spoiler control */
+			} else if (boxes[i].scrollHeight == 0) { /* possibly inside a spoiler control */
 			if (boxes[i].innerHTML.split('\n').length-1 > 17) {
 				add_expand = true;
 			}
@@ -1714,12 +1714,87 @@ function expand_code_init() {
 
 		if (add_expand) {
 			var tagP = (boxes[i].parentNode.tagName.toLowerCase() == 'pre' ? boxes[i].parentNode.previousSibling : boxes[i].previousSibling);
-            		tagP.innerHTML += ' - <a href="#" onclick="expandCode(this); return false;">Expand View</a>';
-           		var c = tagP.parentNode.getElementsByTagName('code')[0];
-            		c.setAttribute('expanded','false');
-            		c.style.height = '200px';
+				tagP.innerHTML += ' - <a href="#" onclick="expandCode(this); return false;">Expand View</a>';
+			var c = tagP.parentNode.getElementsByTagName('code')[0];
+				c.setAttribute('expanded','false');
+				c.style.height = '200px';
 			c.style.maxHeight = 'unset';
 		}
 	}
 }
 expand_code_init();
+
+
+
+// joedf: add download for codeboxes
+// should work for IE11, Chrome v1+, FF36+
+
+function download_code_init(){
+	var boxes = document.getElementsByTagName('code');
+	for (var i = 0; i < boxes.length; i++) {
+		if (boxes[i].parentNode.parentNode.getAttribute('data-filename') != null) {
+
+			var filename = boxes[i].parentNode.parentNode.getAttribute('data-filename').trim().replace(/[<>:"\/\\\|\?\'\*]/g,'_');
+
+			var tagP = (boxes[i].parentNode.tagName.toLowerCase() == 'pre' ? boxes[i].parentNode.previousSibling : boxes[i].previousSibling);
+				tagP.innerHTML += ' - <a href="#" title="download '+filename+'" onclick="downloadCode(this); return false;">Download</a>';
+		}
+	}
+}
+// joedf: modified from https://stackoverflow.com/a/33542499/883015
+window.downloadCode = function(e) {
+	// get Filename (regex ensures valid and safe name) and Data
+	var filename = e.parentNode.parentNode.getAttribute('data-filename').trim().replace(/[<>:"\/\\\|\?\'\*]/g,'_');
+	var data = e.parentNode.parentNode.getElementsByTagName('code')[0].innerText;
+
+	var blob = new Blob([data], {type: 'text/plain'});  
+	if(window.navigator.msSaveOrOpenBlob) {
+		window.navigator.msSaveBlob(blob, filename);
+	} else {
+		var elem = window.document.createElement('a'); 
+		elem.href = window.URL.createObjectURL(blob); 
+		elem.download = filename; 
+		document.body.appendChild(elem); 
+		elem.click();   
+		document.body.removeChild(elem);
+	}
+}
+download_code_init();
+
+
+// joedf: add option toggle line numbers in codeboxes
+// created Jan 2020
+// updated July 01, 2020 - use line-numbers plugin, with a css fixes and tweak to allowing toggling 
+
+function toggleLineNums_init(){
+	// add css rules
+	var ir = document.createElement('style');
+	ir.innerHTML = "pre[class*=\"language-\"].line-numbers-hide .line-numbers-rows { display: none; }";
+	document.body.appendChild(ir);
+
+	// add toggle anchor links ...
+	var boxes = document.getElementsByTagName('code');
+	for (var i = 0; i < boxes.length; i++) {
+		var tagP = (boxes[i].parentNode.tagName.toLowerCase() == 'pre' ? boxes[i].parentNode.previousSibling : boxes[i].previousSibling);
+			tagP.innerHTML += ' - <a href="#" title="Toggle Line numbers" onclick="toggleLineNums(this); return false;">Toggle Line numbers</a>';
+
+		var tagPre = (boxes[i].parentNode.tagName.toLowerCase() == 'pre' ? boxes[i].parentNode : boxes[i].previousSibling);
+		if (tagPre) {
+			tagPre.className = tagPre.className.trim() + " line-numbers";
+		}
+	}
+}
+function toggleLineNums(e) {
+	var eCode = e.parentNode.parentNode.getElementsByTagName('code')[0];
+
+	var tagPre = (eCode.parentNode.tagName.toLowerCase() == 'pre' ? eCode.parentNode : eCode.previousSibling);
+	if (tagPre) {
+
+		if (tagPre.className.indexOf('line-numbers-hide') >= 0){
+			tagPre.className = tagPre.className.replace('line-numbers-hide','line-numbers').trim();
+		} else {
+			tagPre.className = tagPre.className.replace('line-numbers','line-numbers-hide').trim();
+		}
+	}
+}
+toggleLineNums_init();

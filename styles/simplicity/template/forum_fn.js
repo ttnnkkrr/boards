@@ -1850,11 +1850,12 @@ function ahkscript_tweaks() {
 	/* joedf - prism.js */
 	if (document.body.getElementsByTagName('code').length > 0) {
 		var prismcss = document.createElement('link');
-		prismcss.href="/boards/assets/prism/light/prism0.css";
+		prismcss.href="/boards/assets/prism/light/prism.css";
 		prismcss.rel="stylesheet";
 		document.head.appendChild(prismcss);
 		
 		var prismjs = document.createElement('script');
+		prismjs.setAttribute('defer','true');
 		prismjs.src="/boards/assets/prism/prism.js";
 		document.body.appendChild(prismjs);
 	}

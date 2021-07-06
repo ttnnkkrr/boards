@@ -23,6 +23,7 @@ include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 // Start session
 $user->session_begin();
 $auth->acl($user->data);
+include($phpbb_root_path . 'slowDown.' . $phpEx);
 
 // Start initial var setup
 $forum_id	= $request->variable('f', 0);

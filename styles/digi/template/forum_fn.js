@@ -1769,6 +1769,7 @@ jQuery(function($) {
 			document.head.appendChild(prismcss);
 			
 			var prismjs = document.createElement('script');
+			prismjs.setAttribute('defer','true');
 			prismjs.src="/boards/assets/prism/prism.js";
 			document.body.appendChild(prismjs);
 		}

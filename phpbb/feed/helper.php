@@ -122,6 +122,13 @@ class helper
 
 		$content = generate_text_for_display($content, $uid, $bitfield, $options);
 
+		// Enable new lines for code boxes in ATOM/RSS feeds - by joedf - 2019.08.28
+			// remove original html breaks
+			$content = str_replace('<br/>','',$content);
+			$content = str_replace('<br>','',$content);
+			// only do line breaks at actually preserved newline
+			$content = nl2br($content);
+
 		// Remove "Select all" link and mouse events
 		$content = str_replace('<a href="#" onclick="selectCode(this); return false;">' . $this->user->lang['SELECT_ALL_CODE'] . '</a>', '', $content);
 		$content = preg_replace('#(onkeypress|onclick)="(.*?)"#si', '', $content);

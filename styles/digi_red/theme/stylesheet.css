@@ -1,4 +1,22 @@
 /*** joedf mod ***/
+/* joedf Tweaks
+------------------------------------------------------------------------------*/
+.inline_code {
+  font-family: Consolas,Monaco,'Andale Mono','Courier New',Courier,monospace;
+  font-size: 12px;
+  color: #6a94b0;
+  border: 1px solid #6a7075;
+  padding: 0px 2px;
+  background: #262626;
+  overflow: visible;
+  display: inline-block;
+  border-radius: 2px;
+}
+.post_spoiler_show {
+  background: #333;
+  border: 1px solid yellow;
+  color: yellow;
+}
 kbd {
     border: 1px solid #ccc;
     border-radius: 3px;
@@ -15,6 +33,7 @@ kbd {
     white-space: nowrap;
 }
 
+  
 /*!
 	DO NOT EDIT stylesheet.css!
 
@@ -2537,11 +2556,12 @@ blockquote .codebox {
   margin-left: 0; }
 
 .codebox code {
-  overflow: auto;
+  /* joedf - commented out, breaks line-numbers */
+  /*overflow: auto;*/
+  /*padding: 5px 3px;*/
   display: block;
   height: auto;
   max-height: 200px;
-  padding: 5px 3px;
   font-family: Monaco, "Andale Mono","Courier New", Courier, mono;
   font-size: 12px;
   line-height: 1.3; }
@@ -4455,13 +4475,23 @@ hr {
   border-bottom-color: #98999a;
   color: #98999a; }
 
-.postlink:visited {
+/*.postlink:visited {
   border-bottom-color: #a7a7a7;
   color: #a7a7a7; }
 
 .postlink:hover {
   background-color: #0f0f0f;
-  color: #c32425; }
+  color: #c32425; }*/
+
+   .postlink:visited {
+  border-bottom-color: #a4a7ab;
+  color: #7D94BD; }
+
+.postlink:hover {
+  background-color: #20242D;
+  padding: 0px 1px;
+  border-radius: 2px;
+  color: #c35824; }
 
 .signature a, .signature a:hover {
   background-color: transparent; }

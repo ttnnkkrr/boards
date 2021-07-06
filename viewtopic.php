@@ -25,6 +25,7 @@ include($phpbb_root_path . 'includes/functions_user.' . $phpEx);
 // Start session management
 $user->session_begin();
 $auth->acl($user->data);
+include($phpbb_root_path . 'slowDown.' . $phpEx);
 
 // Initial var setup
 $forum_id	= $request->variable('f', 0);

@@ -21,7 +21,21 @@
 	</div>
 <!-- ENDIF -->
 
-<form id="postform" method="post" action="{S_POST_ACTION}"{S_FORM_ENCTYPE}>
+<script type="text/javascript">
+function validatePostform(){
+	var eSubject = document.getElementById('subject');
+	if (!!eSubject) {
+		var _t = eSubject.value.trim();
+		var isValid = (_t.length > 1);
+		if (!isValid) {
+			alert('Please specify a valid subject post title.')
+		}
+		return isValid;
+	}
+	return true;
+}
+</script>
+<form id="postform" onsubmit="return validatePostform()" method="post" action="{S_POST_ACTION}"{S_FORM_ENCTYPE}>
 
 <!-- IF S_DRAFT_LOADED -->
 	<div class="panel">

@@ -125,6 +125,16 @@ if (in_array($mode, array('post', 'reply', 'quote', 'edit', 'delete')) && !$foru
 /* @var $phpbb_content_visibility \phpbb\content_visibility */
 $phpbb_content_visibility = $phpbb_container->get('content.visibility');
 
+/* show tutorial gif to new users posting in ask for help*/
+$ShowGif = false;
+if (	(!$user->data['is_registered'] || $user->data['user_posts'] < 3) && ($forum_id == 76 || $forum_id == 18) )
+{
+	/**/
+	//$forum_id	=
+	$ShowGif = true;
+}
+
+$template->assign_var('S_SHOWGIF', $ShowGif);
 // We need to know some basic information in all cases before we do anything.
 switch ($mode)
 {

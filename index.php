@@ -27,6 +27,7 @@ include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 $user->session_begin();
 $auth->acl($user->data);
 $user->setup('viewforum');
+include($phpbb_root_path . 'slowDown.' . $phpEx);
 
 // Mark notifications read
 if (($mark_notification = $request->variable('mark_notification', 0)))

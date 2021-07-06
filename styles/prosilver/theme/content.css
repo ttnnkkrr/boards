@@ -517,11 +517,12 @@ blockquote .codebox {
 }
 
 .codebox code {
-	overflow: auto;
+  /* joedf - commented out, breaks line-numbers */
+  /*overflow: auto;*/
+  /*padding: 5px 3px;*/
 	display: block;
 	height: auto;
 	max-height: 200px;
-	padding: 5px 3px;
 	font: 0.9em Monaco, "Andale Mono","Courier New", Courier, monospace;
 	line-height: 1.3em;
 }

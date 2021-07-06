@@ -1,12 +1,19 @@
-/* joedf - mod */
+/* joedf - mod, also changed some colours */
 pre[class*="language-"] > code {
     border: 0 !important;
     box-shadow: none !important;
 }
+.line-numbers .line-numbers-rows {
+	border-right: 1px solid limegreen !important;
+}
+.token.function-name,
+.token.function {
+	font-weight: bold;
+}
+.token.builtin { color: #0148c2 !important; }
 
-
-/* PrismJS 1.15.0
-https://prismjs.com/download.html#themes=prism-coy&languages=markup+css+clike+javascript */
+/* PrismJS 1.20.0
+https://prismjs.com/download.html#themes=prism-coy&languages=markup+css+clike+javascript+autohotkey+autoit+c+csharp+cpp+ini+java+json+markup-templating+php+python&plugins=line-numbers */
 /**
  * prism.js Coy theme for JavaScript, CoffeeScript, CSS and HTML
  * Based on https://github.com/tshedor/workshop-wp-theme (Example: http://workshop.kansan.com/category/sessions/basics or http://workshop.timshedor.com/category/sessions/basics);
@@ -18,6 +25,7 @@ pre[class*="language-"] {
 	color: black;
 	background: none;
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
@@ -53,7 +61,7 @@ pre[class*="language-"]>code {
 	background-attachment: local;
 }
 
-code[class*="language"] {
+code[class*="language-"] {
 	max-height: inherit;
 	height: inherit;
 	padding: 0 1em;
@@ -101,7 +109,6 @@ pre[class*="language-"]:after {
 	transform: rotate(-2deg);
 }
 
-:not(pre) > code[class*="language-"]:after,
 pre[class*="language-"]:after {
 	right: 0.75em;
 	left: auto;
@@ -186,7 +193,7 @@ pre[class*="language-"]:after {
 	cursor: help;
 }
 
-.namespace {
+.token.namespace {
 	opacity: .7;
 }
 
@@ -197,13 +204,6 @@ pre[class*="language-"]:after {
 		box-shadow: none;
 	}
 
-}
-
-/* Plugin styles */
-.token.tab:not(:empty):before,
-.token.cr:before,
-.token.lf:before {
-	color: #e0d7d1;
 }
 
 /* Plugin styles: Line Numbers */
@@ -232,4 +232,45 @@ pre[data-line] code {
 pre .line-highlight {
 	margin-top: 0;
 }
+
+pre[class*="language-"].line-numbers {
+	position: relative;
+	padding-left: 3.8em;
+	counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+	position: relative;
+	white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	font-size: 100%;
+	left: -3.8em;
+	width: 3em; /* works for line-numbers below 1000 lines */
+	letter-spacing: -1px;
+	border-right: 1px solid #999;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+	.line-numbers-rows > span {
+		display: block;
+		counter-increment: linenumber;
+	}
+
+		.line-numbers-rows > span:before {
+			content: counter(linenumber);
+			color: #999;
+			display: block;
+			padding-right: 0.8em;
+			text-align: right;
+		}
 

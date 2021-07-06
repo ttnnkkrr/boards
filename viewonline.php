@@ -23,6 +23,7 @@ include($phpbb_root_path . 'common.' . $phpEx);
 $user->session_begin();
 $auth->acl($user->data);
 $user->setup('memberlist');
+include($phpbb_root_path . 'slowDown.' . $phpEx);
 
 // Get and set some variables
 $mode		= $request->variable('mode', '');

@@ -4,6 +4,23 @@ DirectoryIndex index.php
 RewriteEngine on
 RewriteBase /boards/
 
+## there is no reason for there to be anything but post and get
+#tank 12/29/2019
+    RewriteEngine on
+    RewriteCond %{THE_REQUEST} !^(POST|GET)\ /.*\ HTTP/1\.1$ 
+    RewriteRule .* - [F]
+
+
+#handle hotlinking
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https://(www\.)autohotkey.com/.*$ [NC]
+RewriteRule \.(gif|jpg|jpeg|bmp|zip|rar|mp3|flv|swf|xml|png|css|pdf)$ - [F]
+
+#fraud site
+RewriteCond %{HTTP_REFERER} ^https://www\.autohotkey\.fr [NC]
+RewriteRule ^(.*)$ https://www.autohotkey.com/boards/viewtopic.php?f=2&t=70926 [R=301,L] 
+
+
 RewriteCond %{HTTP_HOST} !=""
 RewriteCond %{HTTP_HOST} !^www\. [NC]
 RewriteCond %{HTTPS}s ^on(s)|

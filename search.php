@@ -23,7 +23,9 @@ include($phpbb_root_path . 'common.' . $phpEx);
 $user->session_begin();
 $auth->acl($user->data);
 $user->setup('search');
+include($phpbb_root_path . 'slowDown.' . $phpEx);
 
+//print_r($user->cookie_data);
 // Define initial vars
 $mode			= $request->variable('mode', '');
 $search_id		= $request->variable('search_id', '');

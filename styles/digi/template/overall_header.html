@@ -60,6 +60,32 @@
 	<link href="{T_THEME_PATH}/tweaks.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
 <![endif]-->
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-64R95DG9Q3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-64R95DG9Q3');
+
+        var __TrackUser = <!-- IF S_USER_LOGGED_IN -->'{S_USERNAME}'<!-- ELSE -->'Anon'<!-- ENDIF -->;
+        var __Forum_Number = <!-- IF S_FORUM_ID -->'{S_FORUM_ID}'<!-- ELSE -->'0'<!-- ENDIF -->;
+        var __Topic_ID = <!-- IF S_TOPIC_ID -->'{S_TOPIC_ID}'<!-- ELSE -->'0'<!-- ENDIF -->;
+        gtag('config', 'GA_MEASUREMENT_ID', {
+
+            'user_id': __TrackUser
+        });
+
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MN97XR3');</script>
+    <!-- End Google Tag Manager -->
+
 <!-- EVENT overall_header_head_append -->
 
 {$STYLESHEETS}
